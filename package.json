@@ -1,0 +1,32 @@
+{
+  "name": "atm-redux-react",
+  "version": "1.0.0",
+  "description": "ATM app using Redux and React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amac0183/ATM-Redux-React.git"
+  },
+  "author": "Andrew Hayakawa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amac0183/ATM-Redux-React/issues"
+  },
+  "homepage": "https://github.com/amac0183/ATM-Redux-React#readme",
+  "dependencies": {
+    "react": "^0.14.7",
+    "redux": "^3.3.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.5.1",
+    "babel-core": "^6.5.2",
+    "babel-preset-es2015": "^6.5.0",
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "webpack": "^1.12.13",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
