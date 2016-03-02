@@ -1,7 +1,12 @@
 import React from 'react';
 import { render } from 'react-dom';
 
+import Root from './containers/root';
+import configureStore from './store/';
+
+const store = configureStore();
+
 render(
-    <div>Hello world!</div>,
+    <Root store={store} />,
     document.getElementById('root')
 );
