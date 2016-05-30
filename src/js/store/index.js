@@ -6,7 +6,13 @@ import DevTools from '../containers/devtools';
 
 const INIT_STATE = {
     balance: 500,
-    transactions: []
+    transactions: [
+        {
+            amount: 500,
+            balance: 500,
+            text: 'Deposit'
+        }
+    ]
 };
 
 const configureStore = (initialState=INIT_STATE) => {

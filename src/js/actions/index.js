@@ -8,15 +8,17 @@ export const depositAmount = (amount, balance) => {
 		type: DEPOSIT,
 		amount: amount,
 		status: true,
-		balance: balance + amount
+		balance: balance + amount,
+		text: 'Deposit'
 	};
 }
 
 export const withdrawAmount = (amount, balance) => {
 	return {
 		type: WITHDRAW,
-		amount: amount*-1,
-		balance: balance - amount
+		amount: amount,
+		balance: balance,
+		text: 'Withdraw'
 	};
 }
 
@@ -27,10 +29,9 @@ export const checkBalance = (amount, balance) => {
 	};
 }
 
-export const updateBalance = (amount, balance) => {
+export const updateBalance = (balance) => {
 	return {
 		type: UPDATE_BALANCE,
-		amount: amount,
 		balance: balance
 	};
 }
