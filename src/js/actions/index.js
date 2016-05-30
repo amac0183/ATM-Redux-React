@@ -8,7 +8,7 @@ export const depositAmount = (amount, balance) => {
 		type: DEPOSIT,
 		amount: amount,
 		status: true,
-		balance: balance + amount,
+		balance: balance,
 		text: 'Deposit'
 	};
 }

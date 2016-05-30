@@ -12,21 +12,27 @@ class Transactions extends Component {
         return Number(this.refs.amount.value);
     }
     deposit() {
-        let amount = this.getAmountValue();
-        let balance = this.props.balance + amount;
+        const amount = this.getAmountValue();
+        const balance = this.props.balance + amount;
 
-        if(this.errorHandling(amount, balance) === 0) {
+        console.log(balance);
+
+        const errorMsg = this.errorHandling(amount, balance);
+        if(errorMsg) {
+            alert(errorMsg);
             return;
         }
 
-        this.props.deposita(amount, balance);
+        this.props.deposit(amount, balance);
         this.props.updateBalance(balance);
     }
     withdraw() {
         let amount = this.getAmountValue()*-1;
         let balance = this.props.balance + amount;
 
-        if(this.errorHandling(amount, balance, true) === 0) {
+        const errorMsg = this.errorHandling(amount, balance, true);
+        if(errorMsg) {
+            alert(errorMsg);
             return;
         }
 
@@ -35,22 +41,19 @@ class Transactions extends Component {
     }
     errorHandling(amount, balance, isWithdrawal=false) {
         if(Number.isNaN(amount)) {
-            alert('Amount is not an actual number');
-            return 0;
+            return 'Amount is not an actual number';
         }
 
-        if((isWithdrawal && amount >= 0) || 
+        if((isWithdrawal && amount >= 0) ||
             (!isWithdrawal && amount <=0 )) {
-            alert('Amount must be greater than 0');
-            return 0;
+            return 'Amount must be greater than 0';
         }
 
         if(isWithdrawal && balance < 0) {
-            alert('Your withdrawal amount exceeds the balance in your account.');
-            return 0;
+            return 'Your withdrawal amount exceeds the balance in your account.';
         }
 
-        return 1;
+        return;
     }
     render() {
         const { balance, transactions, withdraw, updateBalance } = this.props;
