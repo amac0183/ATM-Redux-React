@@ -22,14 +22,23 @@ class StatusDisplay extends Component {
 	}
 	render() {
 		const { status } = this.props;
-		return (<div className={'alert ' + this.chooseClassName(status)} role="alert">{_.get(status, 'message', '')}</div>);
+		return (
+			<div className={'alert ' + this.chooseClassName(status)} role="alert">{_.get(status, 'message', '')}</div>
+		);
 	}
+};
+
+StatusDisplay.propTypes = {
+	status: React.PropTypes.shape({
+		status: React.PropTypes.number,
+		message: React.PropTypes.string
+	}).isRequired
 };
 
 const mapStateToProps = (state) => {
     return {
         status: state.status
-    }
-}
+    };
+};
 
 export default connect(mapStateToProps)(StatusDisplay);

@@ -8,7 +8,7 @@ const balance = (state=0, action) => {
             return action.balance;
         default:
             return state;
-    }
-}
+    };
+};
 
 export default balance;

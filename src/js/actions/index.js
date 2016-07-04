@@ -5,27 +5,27 @@ import { ADD_TRANSACTIONS, CHECK_BALANCE, DEPOSIT, RECEIVE_DATA, RECEIVE_DONE,
 	RECEIVE_ERROR, UPDATE_BALANCE, WITHDRAW } from './action_types';
 import STATUS from './status_codes';
 
-export const receiveData = () => {
+const receiveData = () => {
 	return {
 		type: RECEIVE_DATA
 	};
 };
 
-export const receiveDone = (message = '') => {
+const receiveDone = (message = '') => {
 	return {
 		type: RECEIVE_DONE,
 		message: message
 	};
 };
 
-export const receiveError = (message = '') => {
+const receiveError = (message = '') => {
 	return {
 		type: RECEIVE_ERROR,
 		message: message
 	};
 };
 
-export const depositAmount = (amount, balance) => {
+const depositAmount = (amount, balance) => {
 	return {
 		type: DEPOSIT,
 		amount: amount,
@@ -35,7 +35,7 @@ export const depositAmount = (amount, balance) => {
 	};
 };
 
-export const withdrawAmount = (amount, balance) => {
+const withdrawAmount = (amount, balance) => {
 	return {
 		type: WITHDRAW,
 		amount: amount,
@@ -44,28 +44,28 @@ export const withdrawAmount = (amount, balance) => {
 	};
 };
 
-export const addTransactions = (transactions = []) => {
+const addTransactions = (transactions = []) => {
 	return {
 		type: ADD_TRANSACTIONS,
 		transactions: transactions
 	};
 };
 
-export const checkBalance = (amount, balance) => {
+const checkBalance = (amount, balance) => {
 	return {
 		type: CHECK_BALANCE,
 		haveEnough: (balance - amount > 0)
 	};
 };
 
-export const updateBalance = (balance) => {
+const updateBalance = (balance) => {
 	return {
 		type: UPDATE_BALANCE,
 		balance: balance
 	};
 };
 
-export const fetchData = () => {
+const fetchData = () => {
 	return (dispatch) => {
 		dispatch(receiveData());
 		axios.get('http://localhost:3002/bankAccount')
@@ -79,3 +79,6 @@ export const fetchData = () => {
 			});
 	};
 };
+
+export { addTransactions, checkBalance, depositAmount, fetchData, receiveData, receiveDone,
+	receiveError, updateBalance, withdrawAmount };

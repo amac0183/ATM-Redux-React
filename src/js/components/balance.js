@@ -8,13 +8,16 @@ class Balance extends Component {
             <h3>Balance: ${this.props.balance}</h3>
         );
     }
-}
+};
 
+Balance.propTypes = {
+    balance: React.PropTypes.number.isRequired
+};
 
 const mapStateToProps = (state) => {
     return {
         balance: state.balance
-    }
-}
+    };
+};
 
 export default connect(mapStateToProps)(Balance);

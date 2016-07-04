@@ -16,8 +16,8 @@ const transaction = (state, action) => {
             };
         default:
             return state;
-    }
-}
+    };
+};
 
 const transactions = (state=[], action) => {
     switch(action.type) {
@@ -31,7 +31,7 @@ const transactions = (state=[], action) => {
             ];
         default:
             return state;
-    }
-}
+    };
+};
 
 export default transactions;

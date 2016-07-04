@@ -15,7 +15,7 @@ const INIT_STATE = {
     transactions: []
 };
 
-const configureStore = (initialState=INIT_STATE) => {
+const configureStore = (initialState = INIT_STATE) => {
     const store = createStore(
         rootReducers,
         initialState,
@@ -34,6 +34,6 @@ const configureStore = (initialState=INIT_STATE) => {
     }
 
     return store;
-}
+};
 
 export default configureStore;

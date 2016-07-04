@@ -90,14 +90,25 @@ class Transactions extends Component {
             </div>
         );
     }
-}
+};
+
+Transactions.propTypes = {
+    balance: React.PropTypes.number.isRequired,
+    deposit: React.PropTypes.func.isRequired,
+    receiveDone: React.PropTypes.func.isRequired,
+    receiveError: React.PropTypes.func.isRequired,
+    status: React.PropTypes.object.isRequired,
+    transactions: React.PropTypes.array.isRequired,
+    updateBalance: React.PropTypes.func.isRequired,
+    withdraw: React.PropTypes.func.isRequired
+};
 
 const mapStateToProps = (state) => {
     return {
         balance: state.balance,
         status: state.status,
         transactions: state.transactions
-    }
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -117,7 +128,7 @@ const mapDispatchToProps = (dispatch) => {
         withdraw: (amount, balance) => {
             dispatch(withdrawAmount(amount, balance));
         }
-    }
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Transactions);

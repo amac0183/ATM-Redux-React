@@ -9,7 +9,6 @@ const INIT_STATUS_STATE = {
 };
 
 const status = (state = INIT_STATUS_STATE, action = {}) => {
-	console.log(state);
 	switch(action.type) {
 		case RECEIVE_DATA:
 			return {
