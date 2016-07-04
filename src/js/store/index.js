@@ -4,15 +4,15 @@ import createLogger from 'redux-logger';
 import rootReducers from '../reducers/';
 import DevTools from '../containers/devtools';
 
+import { STATUS } from '../actions/';
+
 const INIT_STATE = {
-    balance: 500,
-    transactions: [
-        {
-            amount: 500,
-            balance: 500,
-            text: 'Deposit'
-        }
-    ]
+    balance: 0,
+    status: {
+        status: null,
+        message: ''
+    },
+    transactions: []
 };
 
 const configureStore = (initialState=INIT_STATE) => {

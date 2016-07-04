@@ -1,6 +1,9 @@
+import moment from 'moment';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { depositAmount, updateBalance, withdrawAmount } from '../actions/';
+
+import { depositAmount, receiveDone, receiveError, updateBalance,
+    withdrawAmount } from '../actions/';
 
 class Transactions extends Component {
     constructor(props) {
@@ -15,29 +18,30 @@ class Transactions extends Component {
         const amount = this.getAmountValue();
         const balance = this.props.balance + amount;
 
-        console.log(balance);
-
         const errorMsg = this.errorHandling(amount, balance);
         if(errorMsg) {
-            alert(errorMsg);
+            this.props.receiveError(errorMsg);
             return;
         }
 
         this.props.deposit(amount, balance);
         this.props.updateBalance(balance);
+        this.props.receiveDone('Deposit of $' + amount + ' successful');
     }
     withdraw() {
-        let amount = this.getAmountValue()*-1;
-        let balance = this.props.balance + amount;
+        const amount = this.getAmountValue();
+        const withdrawAmount = amount * -1;
+        let balance = this.props.balance + withdrawAmount;
 
-        const errorMsg = this.errorHandling(amount, balance, true);
+        const errorMsg = this.errorHandling(withdrawAmount, balance, true);
         if(errorMsg) {
-            alert(errorMsg);
+            this.props.receiveError(errorMsg);
             return;
         }
 
-        this.props.withdraw(amount, balance);
+        this.props.withdraw(withdrawAmount, balance);
         this.props.updateBalance(balance);
+        this.props.receiveDone('Withdrawl of $' + amount + ' successful');
     }
     errorHandling(amount, balance, isWithdrawal=false) {
         if(Number.isNaN(amount)) {
@@ -56,24 +60,26 @@ class Transactions extends Component {
         return;
     }
     render() {
-        const { balance, transactions, withdraw, updateBalance } = this.props;
+        const { balance, transactions } = this.props;
         
         return (
             <div>
-                <table>
+                <table className='table table-striped table-hover'>
                     <thead>
                         <tr>
+                            <th>Date/Time</th>
                             <th>Description</th>
-                            <th>Amount</th>
-                            <th>Balance</th>
+                            <th className='text-right'>Amount</th>
+                            <th className='text-right'>Balance</th>
                         </tr>
                     </thead>
                     <tbody>
                         {this.props.transactions.map(transaction =>
                             <tr>
+                                <td>{moment(transaction.timestamp).format('MMMM Do YYYY, h:mm:ss a')}</td>
                                 <td>{transaction.text}</td>
-                                <td>$ {transaction.amount}</td>
-                                <td>$ {transaction.balance}</td>
+                                <td className={(transaction.amount >= 0 ? 'number' : 'number negative') + ' text-right'} >$ {transaction.amount}</td>
+                                <td className='text-right' >$ {transaction.balance}</td>
                             </tr>
                         )}
                     </tbody>
@@ -89,14 +95,21 @@ class Transactions extends Component {
 const mapStateToProps = (state) => {
     return {
         balance: state.balance,
+        status: state.status,
         transactions: state.transactions
     }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {
         deposit: (amount, balance) => {
             dispatch(depositAmount(amount, balance));
+        },
+        receiveDone: (message) => {
+            dispatch(receiveDone(message));
+        },
+        receiveError: (message) => {
+            dispatch(receiveError(message));
         },
         updateBalance: (balance) => {
             dispatch(updateBalance(balance));
@@ -105,6 +118,6 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(withdrawAmount(amount, balance));
         }
     }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Transactions);

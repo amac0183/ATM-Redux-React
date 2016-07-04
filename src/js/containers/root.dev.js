@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import DevTools from './devtools';
 
 import Balance from '../components/balance';
+import StatusDisplay from '../components/status_display';
 import Transactions from '../components/transactions';
 
 export default class Root extends Component {
@@ -11,7 +12,9 @@ export default class Root extends Component {
 
         return (
             <Provider store={store}>
-                <div>
+                <div className='container'>
+                    <div className='page-header'><h1>ATM in Redux-React</h1></div>
+                    <StatusDisplay />
                     <Balance />
                     <Transactions />
                     <DevTools />
