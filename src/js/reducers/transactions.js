@@ -3,15 +3,21 @@ import moment from 'moment';
 
 import { ADD_TRANSACTIONS, DEPOSIT, WITHDRAW } from '../actions/action_types';
 
+/*
+ * Transaction reducer
+ * @param {Object} state
+ * @param {Object} action
+ * @returns {Object}
+ */
 const transaction = (state, action) => {
 	switch(action.type) {
 		case DEPOSIT:
 		case WITHDRAW:
 			return {
 				//id: action.id,
-				text: action.text,
-				amount: action.amount,
-				balance: action.balance,
+				text: _.get(action, 'text', ''),
+				amount: _.get(action, 'amount', 0),
+				balance: _.get(action, 'balance', 0),
 				timestamp: moment().format()
 			};
 		default:
@@ -19,6 +25,12 @@ const transaction = (state, action) => {
 	};
 };
 
+/*
+ * Transactions reducer
+ * @param {Array}  state
+ * @param {Object} action
+ * @returns {Object}
+ */
 const transactions = (state=[], action) => {
 	switch(action.type) {
 		case ADD_TRANSACTIONS:

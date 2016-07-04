@@ -5,20 +5,35 @@ import { connect } from 'react-redux';
 import { depositAmount, receiveDone, receiveError, updateBalance,
 	withdrawAmount } from '../actions/';
 
+/*
+ * Transactions component
+ */
 class Transactions extends Component {
+	/*
+	 * Constructor
+	 * @constructor
+	 * @param {Object} props
+	 */
 	constructor(props) {
 		super(props);
 		this.deposit = this.deposit.bind(this);
 		this.withdraw = this.withdraw.bind(this);
 	}
+	/*
+	 * Gets the numeric value entered in the amount text input
+	 * @returns {Number}
+	 */
 	getAmountValue() {
 		return Number(this.refs.amount.value);
 	}
+	/*
+	 * Deposits amount from the text input. It validates the value inputted.
+	 */
 	deposit() {
 		const amount = this.getAmountValue();
 		const balance = this.props.balance + amount;
 
-		const errorMsg = this.errorHandling(amount, balance);
+		const errorMsg = this.getErrorMessage(amount, balance);
 		if(errorMsg) {
 			this.props.receiveError(errorMsg);
 			return;
@@ -28,12 +43,16 @@ class Transactions extends Component {
 		this.props.updateBalance(balance);
 		this.props.receiveDone('Deposit of $' + amount + ' successful');
 	}
+	/*
+	 * Withdraws amount from the text input. It validates the value inputted
+	 * and ensures there is enough in the balance.
+	 */
 	withdraw() {
 		const amount = this.getAmountValue();
 		const withdrawAmount = amount * -1;
 		let balance = this.props.balance + withdrawAmount;
 
-		const errorMsg = this.errorHandling(withdrawAmount, balance, true);
+		const errorMsg = this.getErrorMessage(withdrawAmount, balance, true);
 		if(errorMsg) {
 			this.props.receiveError(errorMsg);
 			return;
@@ -43,7 +62,14 @@ class Transactions extends Component {
 		this.props.updateBalance(balance);
 		this.props.receiveDone('Withdrawl of $' + amount + ' successful');
 	}
-	errorHandling(amount, balance, isWithdrawal=false) {
+	/*
+	 * Error handling for the value inputted in the text input
+	 * @param {Number}  amount
+	 * @param {Number}  balance
+	 * @param {Boolean} isWithdrawal
+	 * @returns {String} error message
+	 */
+	getErrorMessage(amount, balance, isWithdrawal=false) {
 		if(Number.isNaN(amount)) {
 			return 'Amount is not an actual number';
 		}
@@ -59,6 +85,10 @@ class Transactions extends Component {
 
 		return;
 	}
+	/*
+	 * Renders the component
+	 * @returns {Object} React element
+	 */
 	render() {
 		const { balance, transactions } = this.props;
 		
@@ -105,6 +135,11 @@ Transactions.propTypes = {
 	withdraw: React.PropTypes.func.isRequired
 };
 
+/*
+ * Picks individual required state data for the Transactions component
+ * @param {Object} state
+ * @returns {Object} map of needed state data
+ */
 const mapStateToProps = (state) => {
 	return {
 		balance: state.balance,
@@ -113,6 +148,11 @@ const mapStateToProps = (state) => {
 	};
 };
 
+/*
+ * Picks individual required dispatch of actions for the Transactions component
+ * @param {Object} dispatch
+ * @returns {Object} map of dispatches
+ */
 const mapDispatchToProps = (dispatch) => {
 	return {
 		deposit: (amount, balance) => {

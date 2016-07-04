@@ -5,8 +5,14 @@ import Balance from '../components/balance';
 import StatusDisplay from '../components/status_display';
 import Transactions from '../components/transactions';
 
-
+/*
+ * Root component in production mode. It does not display DevTools
+ */
 export default class Root extends Component {
+	/*
+	 * Renders the component
+	 * @returns {Object} React element
+	 */
 	render() {
 		return (
 			<Provider store={store}>
