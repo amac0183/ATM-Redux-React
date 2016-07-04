@@ -74,14 +74,16 @@ class Transactions extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.props.transactions.map(transaction =>
-                            <tr>
-                                <td>{moment(transaction.timestamp).format('MMMM Do YYYY, h:mm:ss a')}</td>
-                                <td>{transaction.text}</td>
-                                <td className={(transaction.amount >= 0 ? 'number' : 'number negative') + ' text-right'} >$ {transaction.amount}</td>
-                                <td className='text-right' >$ {transaction.balance}</td>
-                            </tr>
-                        )}
+                        {this.props.transactions.map((transaction, index) => {
+                            return (
+                                <tr key={index} >
+                                    <td>{moment(transaction.timestamp).format('MMMM Do YYYY, h:mm:ss a')}</td>
+                                    <td>{transaction.text}</td>
+                                    <td className={(transaction.amount >= 0 ? 'number' : 'number negative') + ' text-right'} >$ {transaction.amount}</td>
+                                    <td className='text-right' >$ {transaction.balance}</td>
+                                </tr>
+                            );
+                        })}
                     </tbody>
                 </table>
                 <input ref="amount" />
