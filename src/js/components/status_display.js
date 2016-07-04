@@ -36,9 +36,9 @@ StatusDisplay.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-    return {
-        status: state.status
-    };
+	return {
+		status: state.status
+	};
 };
 
 export default connect(mapStateToProps)(StatusDisplay);

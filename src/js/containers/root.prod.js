@@ -9,15 +9,15 @@ import Transactions from '../components/transactions';
 export default class Root extends Component {
 	render() {
 		return (
-            <Provider store={store}>
-                <div className='container'>
-                    <div className='page-header'><h1>ATM in Redux-React</h1></div>
-                    <StatusDisplay />
-                    <Balance />
-                    <Transactions />
-                    <DevTools />
-                </div>
-            </Provider>
+			<Provider store={store}>
+				<div className='container'>
+					<div className='page-header'><h1>ATM in Redux-React</h1></div>
+					<StatusDisplay />
+					<Balance />
+					<Transactions />
+					<DevTools />
+				</div>
+			</Provider>
 		);
 	}
 }

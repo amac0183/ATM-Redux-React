@@ -9,6 +9,6 @@ const store = configureStore();
 store.dispatch(fetchData());
 
 render(
-    <Root store={store} />,
-    document.getElementById('root')
+	<Root store={store} />,
+	document.getElementById('root')
 );
