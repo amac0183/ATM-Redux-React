@@ -1,6 +1,7 @@
 import _ from 'lodash';
 
-import { RECEIVE_DATA, RECEIVE_DONE, RECEIVE_ERROR, STATUS } from '../actions/';
+import STATUS from '../actions/status_codes';
+import { RECEIVE_DATA, RECEIVE_DONE, RECEIVE_ERROR } from '../actions/action_types';
 
 const INIT_STATUS_STATE = {
 	status: null,

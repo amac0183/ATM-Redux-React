@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import moment from 'moment';
 
-import { ADD_TRANSACTIONS, DEPOSIT, WITHDRAW } from '../actions/';
+import { ADD_TRANSACTIONS, DEPOSIT, WITHDRAW } from '../actions/action_types';
 
 const transaction = (state, action) => {
     switch(action.type) {

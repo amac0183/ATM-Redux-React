@@ -1,24 +1,9 @@
 import _ from 'lodash';
 import axios from 'axios';
 
-export const REQUEST_DATA = 'REQUEST_DATA';
-
-export const DEPOSIT = 'DEPOSIT';
-export const WITHDRAW = 'WITHDRAW';
-export const ADD_TRANSACTIONS = 'ADD_TRANSACTIONS';
-export const UPDATE_BALANCE = 'UPDATE_BALANCE';
-export const CHECK_BALANCE = 'CHECK_BALANCE';
-export const FETCH_BALANCE = 'FETCH_BALANCE';
-export const RECEIVE_DONE = 'RECEIVE_DONE';
-export const RECEIVE_DATA = 'RECEIVE_DATA';
-export const RECEIVE_ERROR = 'RECEIVE_ERROR';
-
-export const STATUS = {
-	INIT: 1,
-	DONE_LOADING: 2,
-	LOADING: 3,
-	ERROR: 4
-};
+import { ADD_TRANSACTIONS, CHECK_BALANCE, DEPOSIT, RECEIVE_DATA, RECEIVE_DONE,
+	RECEIVE_ERROR, UPDATE_BALANCE, WITHDRAW } from './action_types';
+import STATUS from './status_codes';
 
 export const receiveData = () => {
 	return {

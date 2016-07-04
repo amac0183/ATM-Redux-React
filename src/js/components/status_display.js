@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { STATUS } from '../actions/';
+import STATUS from '../actions/status_codes';
 
 class StatusDisplay extends Component {
 	constructor(props) {

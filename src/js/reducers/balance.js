@@ -1,4 +1,4 @@
-import { FETCH_BALANCE, UPDATE_BALANCE } from '../actions/';
+import { FETCH_BALANCE, UPDATE_BALANCE } from '../actions/action_types';
 
 const balance = (state=0, action) => {
     switch(action.type) {
